@@ -15,10 +15,10 @@ void Setup::ReshapeFunc(int w, int h)
     glLoadIdentity();
     if (w <= h)
         glOrtho (-1.5, 1.5, -1.5*(GLfloat)h/(GLfloat)w,
-                 1.5*(GLfloat)h/(GLfloat)w, -10.0, 10.0);
+                 1.5*(GLfloat)h/(GLfloat)w, -100.0, 200.0);
     else
         glOrtho (-1.5*(GLfloat)w/(GLfloat)h,
-                 1.5*(GLfloat)w/(GLfloat)h, -1.5, 1.5, -10.0, 10.0);
+                 1.5*(GLfloat)w/(GLfloat)h, -1.5, 1.5, -100.0, 200.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -29,6 +29,7 @@ void Setup::MouseFunc( int Button, int State, int x, int y )
     {
         case GLUT_LEFT_BUTTON:
             std::cout << "Left button pressed!" << std::endl;
+            glutSwapBuffers();
             break;
             
         default:

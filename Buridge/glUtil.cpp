@@ -9,18 +9,16 @@
 #include <iostream>
 #include "glUtil.h"
 
-
 glUtil::glUtil(int *argc, char **argv, short ResX, short ResY)
 {
     glutInit( argc, argv );
-    glutInitDisplayMode ( GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH );
+    glutInitDisplayMode( GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH );
     glutInitWindowSize ( ResX, ResY ); 
-    glutCreateWindow ( argv[0] );
+    WindowID = glutCreateWindow ( argv[0] );
     
     glClearColor ( 0.0, 0.0, 0.0, 0.0 );
     glShadeModel ( GL_SMOOTH );
     glEnable( GL_DEPTH_TEST );
-
 }
 
 glUtil::~glUtil()
