@@ -7,110 +7,75 @@
 //
 
 #include <iostream>
-#include <vector>
 
-#include "main.h"
 #include "glUtil.h"
 #include "Setup.h"
 #include "Physics.h"
-#include "PhyObj.h"
 
 #include <Box2D/Box2D.h>
 
+b2World *World;
 b2Body *BoxBody;
 float32 TimeStep = 1.0 / 60.0;
 int32 VelIters = 6;
 int32 PosIters = 2;
 
-b2World *MyWorld;
-Physics *Scene;
-
-std::vector< PhyObj * > TestObjects;
-
-void DisplayFunction( void )
+void DisplayFunction(void)
 {
-    Scene->DoStep();
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );  
+    World->Step( TimeStep, VelIters, PosIters );
+    //World->ClearForces();
+    b2Vec2 Position = BoxBody->GetPosition();
+    float32 angle = BoxBody->GetAngle();
+    std::cout << "pos: " << Position.y << " " << Position.y << std::endl;
 
-    for( unsigned int i = 0; i < Scene->GetNrOfPhyObjects(); ++i )
-    {
-        PhyObj *ThisObj = Scene->GetPhyObj( i );
-        glLoadIdentity();
-        b2Vec2 Pos = ThisObj->GetPosition();
-        float Angle = ThisObj->GetAngle();
-        glTranslatef( Pos.x, Pos.y, 0.0 );
-        glRotatef( Angle, 0.0, 0.0, 1.0 );
-
-        if( ThisObj->IsAwake() )
-            glColor3f( 1.0-Pos.x, 0.4+Pos.x, 0.3+Pos.y );
-        else
-            glColor3f( 0.0, 0.0, 1.0 );
-
-        glBegin( GL_QUADS );
-        glVertex2f(-0.01,-0.01 );
-        glVertex2f( 0.01,-0.01 );
-        glVertex2f( 0.01, 0.01 );
-        glVertex2f(-0.01, 0.01 );
-        glEnd();
-    }
-
+    //std::cout << "Angle: " << angle << std::endl;
+    //glMatrixMode(GL_MODELVIEW);
+    
+    glLoadIdentity();
+    glTranslatef( Position.x, Position.y - 2, 20.0 );
+    glRotatef( angle * 180 / M_PI, 0.0, 0.0, 1.0 );
+    glutSolidCube( 0.1 );
+    
     glutSwapBuffers();
 }
 
-void Timer( int )
+void Timer(int)
 {
     glutPostRedisplay();
     glutTimerFunc( 16, Timer, 0 );
 }
 
-int main ( int argc, char **argv )
+int main (int argc, char **argv)
 {
-    glUtil *Window = new glUtil( &argc, argv, 640, 480 );
+    glUtil *Window = new glUtil(&argc, argv, 640, 480);
     
-    // Global Scene and World object
-    Scene = new Physics();
-    MyWorld = Scene->GetWorld();
-
-    // Test code    
-    PhyObj *Object;
-    for( int i = 0; i < 400; ++i )
-    {
-        Object = new PhyObj( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 1.0 + i ), 180.0/M_PI*i*21 );
-        Scene->AddPhyObj( Object );
-
-//        Object = new PhyObj( b2Vec2( 0.0, 1.0 + i ), 0.0 );
-//        TestObjects.push_back( Object );
-    }
-    
-    // Test physics, ground and walls
+    Physics *Scene = new Physics();
+    World = Scene->GetWorld();
     b2BodyDef GroundDef;
     b2PolygonShape GroundBox;
-    GroundDef.position.Set( 0.0, -2.0 );
+
+    GroundDef.position.Set( 0.0, -10.0 );
     b2FixtureDef GroundFixture;
-    b2Body *GroundBody = MyWorld->CreateBody( &GroundDef );
-    GroundBox.SetAsBox( 1.0, 1.0 );
+    b2Body *GroundBody = Scene->GetWorld()->CreateBody( &GroundDef );
+    GroundBox.SetAsBox( 50.0, 10.0 );
     GroundFixture.shape = &GroundBox;
     GroundBody->CreateFixture( &GroundFixture );
-  
-    b2BodyDef RightDef;
-    b2PolygonShape RightBox;
-    RightDef.position.Set( 2.0, 0.0 );
-    b2FixtureDef RightFixture;
-    b2Body *RightBody = MyWorld->CreateBody( &RightDef );
-    RightBox.SetAsBox(1.0, 1.0 );
-    RightFixture.shape = &RightBox;
-    RightBody->CreateFixture( &RightFixture );
     
-    b2BodyDef LeftDef;
-    b2PolygonShape LeftBox;
-    LeftDef.position.Set(-2.0, 0.0 );
-    b2FixtureDef LeftFixture;
-    b2Body *LeftBody = MyWorld->CreateBody( &LeftDef );
-    LeftBox.SetAsBox(1.0, 1.0 );
-    LeftFixture.shape = &LeftBox;
-    LeftBody->CreateFixture( &LeftFixture );
-
+    b2BodyDef BoxDef;
+    BoxDef.type = b2_dynamicBody;
+    BoxDef.position.Set( 0.0, 3.0 );
+    BoxDef.angle = M_PI / 6;
+    BoxBody = World->CreateBody( &BoxDef );
+    b2PolygonShape DynBox;
+    DynBox.SetAsBox( 1.0, 1.0 );
+    b2FixtureDef BoxFixture;
+    BoxFixture.shape = &DynBox;
+    BoxFixture.density = 0.001;
+    BoxFixture.friction = 0.3;
+    BoxBody->CreateFixture( &BoxFixture );
+    World->ClearForces();
     
     Window->SetDisplayFunc( DisplayFunction );
     Window->SetMouseFunc( Setup::MouseFunc );
