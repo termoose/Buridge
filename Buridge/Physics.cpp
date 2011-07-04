@@ -10,6 +10,9 @@
 
 Physics::Physics()
 {
+    // Start counting the unique object Id at 0
+    ObjectIdx = 0;
+
     DoSleep = true;
     Gravity = b2Vec2( 0.0, -10.0 );
     
@@ -24,10 +27,10 @@ Physics::Physics()
 Physics::~Physics()
 {
     // Delete all physical objects in vector
-    for( std::vector< PhyObj * >::iterator it = Objects.begin();
+    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
         it != Objects.end(); ++it )
     {
-        delete *it;
+        delete it->second;
     }
 
     Objects.clear();
@@ -46,19 +49,26 @@ b2World *Physics::GetWorld() const
     return World;
 }
 
-PhyObj *Physics::GetPhyObj( unsigned int Index ) const
+PhyObj *Physics::GetPhyObj( int32 Id ) const
 {
-    if ( Index < Objects.size() )
-        return Objects[ Index ];
+    // FIXME: Make sure there is some santity check if the object is not found, we
+    // don't want do take ->second of NULL.
+    std::map< int32, PhyObj * >::const_iterator Result = Objects.find( Id );
+    
+    return Result->second;
+}
 
-    return NULL;
+bool Physics::RemPhyObj( int32 Id )
+{
+    delete GetPhyObj( Id );
+    Objects.erase( Id );
+    
+    return false;
 }
 
 void Physics::AddPhyObj( PhyObj *Object )
 {
-    // Set unique ID to number of objects + 1
-    Object->SetId( (unsigned int)Objects.size() + 1 );
-    
-    // Push PhyObj to end of list
-    Objects.push_back( Object );
+    Objects[ ObjectIdx ] = Object;
+
+    ObjectIdx++;
 }

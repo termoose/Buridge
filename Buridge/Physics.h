@@ -10,6 +10,7 @@
 #define PHYSICS_H
 
 #include <vector>
+#include <map>
 
 #include <Box2D/Box2D.h>
 #include "PhyObj.h"
@@ -23,7 +24,8 @@ public:
     b2World *GetWorld() const;
     
     void AddPhyObj( PhyObj *Object );
-    PhyObj *GetPhyObj( unsigned int Index ) const;
+    bool RemPhyObj( int32 Id );
+    PhyObj *GetPhyObj( int32 Id ) const;
     unsigned int GetNrOfPhyObjects() { return (unsigned int)Objects.size(); }
 
     void DoStep();
@@ -33,12 +35,15 @@ private:
     b2Vec2 Gravity;
 
     // List of all simulated objects in the world
-    std::vector< PhyObj * > Objects;
+    //std::vector< PhyObj * > Objects;
+    std::map< int32, PhyObj * > Objects;
 
     bool DoSleep;
     float32 TimeStep;
     int32 VelIters;
     int32 PosIters;
+    
+    int32 ObjectIdx;
 };
 
 #endif

@@ -22,10 +22,8 @@ public:
     inline float GetAngle() const { return Body->GetAngle(); }
     inline bool IsActive() const { return Body->IsActive(); }
     inline bool IsAwake() const { return Body->IsAwake(); }
-    inline void SetId( unsigned int NewId ) { Id = NewId; }
     
 private:
-    unsigned int Id;
     b2Body *Body;
     b2BodyDef BodyDef;
     b2PolygonShape BodyShape;

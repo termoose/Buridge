@@ -11,9 +11,6 @@
 
 PhyObj::PhyObj( b2Vec2 Pos, float Angle, bool Dyn )
 {
-    // Default Id, should never have 0 as Id
-    Id = 0;
-
     // Set body type based on flag
     BodyDef.type = Dyn ? b2_dynamicBody : b2_staticBody;
     BodyDef.position = Pos;
@@ -35,4 +32,6 @@ PhyObj::PhyObj( b2Vec2 Pos, float Angle, bool Dyn )
 
 PhyObj::~PhyObj()
 {
+    MyWorld->DestroyBody( Body );
+    Body = NULL;
 }
