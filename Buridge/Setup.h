@@ -6,16 +6,25 @@
 //  Copyright 2011 Extab. All rights reserved.
 //
 
-#include <GLUT/glut.h>
+#ifndef SETUP_H
+#define SETUP_H
+
+#include <GLUT/GLUT.h>
+#include <Box2D/Box2D.h>
 #include <iostream>
 
 class Setup
 {
 public:
-    static void DisplayFunc();
+    static void StaticDisplayFunc();
     static void MouseFunc( int Button, int State, int x, int y );
     static void KeyboardFunc( unsigned char key, int x, int y );
     static void ReshapeFunc( int w, int h );
     
     void GLInit();
+    
+private:
+
 };
+
+#endif

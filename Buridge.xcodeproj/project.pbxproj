@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F88B1EF13C179ED002328E5 /* PhyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F88B1ED13C179ED002328E5 /* PhyObj.cpp */; };
 		5F94648813B2723D0006E19F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94643D13B2723D0006E19F /* b2BroadPhase.cpp */; };
 		5F94648913B2723D0006E19F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94643F13B2723D0006E19F /* b2CollideCircle.cpp */; };
 		5F94648A13B2723D0006E19F /* b2CollidePolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94644013B2723D0006E19F /* b2CollidePolygon.cpp */; };
@@ -63,6 +64,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F88B1ED13C179ED002328E5 /* PhyObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhyObj.cpp; sourceTree = "<group>"; };
+		5F88B1EE13C179ED002328E5 /* PhyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhyObj.h; sourceTree = "<group>"; };
+		5F88B1F113C179F9002328E5 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		5F94643B13B2723D0006E19F /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		5F94643D13B2723D0006E19F /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
 		5F94643E13B2723D0006E19F /* b2BroadPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2BroadPhase.h; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 		5F95D63513B2786E00436EC0 /* Physics */ = {
 			isa = PBXGroup;
 			children = (
+				5F88B1ED13C179ED002328E5 /* PhyObj.cpp */,
+				5F88B1EE13C179ED002328E5 /* PhyObj.h */,
 				5F95D63313B274B600436EC0 /* Physics.h */,
 				5F95D63213B274B600436EC0 /* Physics.cpp */,
 			);
@@ -331,6 +337,7 @@
 				5F95D63513B2786E00436EC0 /* Physics */,
 				5F94643A13B2723D0006E19F /* Box2D */,
 				5FE8E1E713B1266F001DBEA6 /* main.cpp */,
+				5F88B1F113C179F9002328E5 /* main.h */,
 				5FE8E1E913B1266F001DBEA6 /* Buridge.1 */,
 			);
 			path = Buridge;
@@ -425,6 +432,7 @@
 				5F9464A913B2723D0006E19F /* b2RevoluteJoint.cpp in Sources */,
 				5F9464AA13B2723D0006E19F /* b2WeldJoint.cpp in Sources */,
 				5F95D63413B274B600436EC0 /* Physics.cpp in Sources */,
+				5F88B1EF13C179ED002328E5 /* PhyObj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
