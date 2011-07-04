@@ -43,6 +43,7 @@
 		5F9464A913B2723D0006E19F /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94648413B2723D0006E19F /* b2RevoluteJoint.cpp */; };
 		5F9464AA13B2723D0006E19F /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94648613B2723D0006E19F /* b2WeldJoint.cpp */; };
 		5F95D63413B274B600436EC0 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F95D63213B274B600436EC0 /* Physics.cpp */; };
+		5FAC824613BC7B6D00B83431 /* PhyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FAC824413BC7B6D00B83431 /* PhyObj.cpp */; };
 		5FE8E1E813B1266F001DBEA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE8E1E713B1266F001DBEA6 /* main.cpp */; };
 		5FE8E1F413B1332D001DBEA6 /* glUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE8E1F213B1332D001DBEA6 /* glUtil.cpp */; };
 		5FE8E1F613B133C7001DBEA6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE8E1F513B133C7001DBEA6 /* OpenGL.framework */; };
@@ -136,6 +137,9 @@
 		5F94648713B2723D0006E19F /* b2WeldJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WeldJoint.h; sourceTree = "<group>"; };
 		5F95D63213B274B600436EC0 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Physics.cpp; sourceTree = "<group>"; };
 		5F95D63313B274B600436EC0 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Physics.h; sourceTree = "<group>"; };
+		5FAC824413BC7B6D00B83431 /* PhyObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhyObj.cpp; sourceTree = "<group>"; };
+		5FAC824513BC7B6D00B83431 /* PhyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhyObj.h; sourceTree = "<group>"; };
+		5FAC824713BC7F2A00B83431 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		5FE8E1E313B1266F001DBEA6 /* Buridge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Buridge; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE8E1E713B1266F001DBEA6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5FE8E1E913B1266F001DBEA6 /* Buridge.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Buridge.1; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 			children = (
 				5F95D63313B274B600436EC0 /* Physics.h */,
 				5F95D63213B274B600436EC0 /* Physics.cpp */,
+				5FAC824413BC7B6D00B83431 /* PhyObj.cpp */,
+				5FAC824513BC7B6D00B83431 /* PhyObj.h */,
 			);
 			name = Physics;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				5F94643A13B2723D0006E19F /* Box2D */,
 				5FE8E1E713B1266F001DBEA6 /* main.cpp */,
 				5FE8E1E913B1266F001DBEA6 /* Buridge.1 */,
+				5FAC824713BC7F2A00B83431 /* main.h */,
 			);
 			path = Buridge;
 			sourceTree = "<group>";
@@ -425,6 +432,7 @@
 				5F9464A913B2723D0006E19F /* b2RevoluteJoint.cpp in Sources */,
 				5F9464AA13B2723D0006E19F /* b2WeldJoint.cpp in Sources */,
 				5F95D63413B274B600436EC0 /* Physics.cpp in Sources */,
+				5FAC824613BC7B6D00B83431 /* PhyObj.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +478,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				LIBRARY_SEARCH_PATHS = (
@@ -489,6 +498,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				LIBRARY_SEARCH_PATHS = (
