@@ -16,7 +16,7 @@ Physics::Physics()
     DoSleep = true;
     Gravity = b2Vec2( 0.0, -10.0 );
     
-    // Default values for accuracy
+    // Default values for accuracy in simulation
     TimeStep = 1.0 / 60.0;
     VelIters = 10;
     PosIters = 10;
@@ -49,25 +49,46 @@ b2World *Physics::GetWorld() const
     return World;
 }
 
+std::map< int32, PhyObj * >::iterator Physics::begin()
+{
+    return Objects.begin();
+}
+
+std::map< int32, PhyObj * >::iterator Physics::end()
+{
+    return Objects.end();
+}
+
 PhyObj *Physics::GetPhyObj( int32 Id ) const
 {
-    // FIXME: Make sure there is some santity check if the object is not found, we
-    // don't want do take ->second of NULL.
     std::map< int32, PhyObj * >::const_iterator Result = Objects.find( Id );
-    
+
+    // Element not found in map
+    if( Result == Objects.end() )
+        return NULL;
+
     return Result->second;
 }
 
 bool Physics::RemPhyObj( int32 Id )
 {
-    delete GetPhyObj( Id );
+    PhyObj *Obj = GetPhyObj( Id );
+    
+    // If element is not found in map, do nothing
+    if( Obj == NULL )
+        return false;
+    
+    delete Obj;
+    Obj = NULL;
+
     Objects.erase( Id );
     
-    return false;
+    return true;
 }
 
 void Physics::AddPhyObj( PhyObj *Object )
 {
+    // Insert into std::map
     Objects[ ObjectIdx ] = Object;
 
     ObjectIdx++;

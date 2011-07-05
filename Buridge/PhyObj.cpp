@@ -21,11 +21,11 @@ PhyObj::PhyObj( b2Vec2 Pos, float Angle, bool Dyn )
 
     // By default we set the collision geometry as a box
     // FIXME: move the body shape definition out in child classes
-    BodyShape.SetAsBox( 0.01, 0.01 );
+    BodyShape.SetAsBox( 0.1, 0.1 );
     BodyFixture.shape = &BodyShape;
 
-    BodyFixture.density = 1.0;
-    BodyFixture.friction = 0.1;
+    SetDensity( 1.0 );
+    SetFriction( 0.1 );
     
     Body->CreateFixture( &BodyFixture );
 }

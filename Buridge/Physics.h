@@ -9,7 +9,6 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-#include <vector>
 #include <map>
 
 #include <Box2D/Box2D.h>
@@ -27,6 +26,10 @@ public:
     bool RemPhyObj( int32 Id );
     PhyObj *GetPhyObj( int32 Id ) const;
     unsigned int GetNrOfPhyObjects() { return (unsigned int)Objects.size(); }
+    
+    // Iterator getters for getting the full map of objects
+    std::map< int32, PhyObj * >::iterator begin();
+    std::map< int32, PhyObj * >::iterator end();
 
     void DoStep();
 
@@ -34,8 +37,7 @@ private:
     b2World *World;
     b2Vec2 Gravity;
 
-    // List of all simulated objects in the world
-    //std::vector< PhyObj * > Objects;
+    // Map of all simulated objects in the world, each with unique Id
     std::map< int32, PhyObj * > Objects;
 
     bool DoSleep;

@@ -33,9 +33,11 @@ void DisplayFunction( void )
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );  
 
-    for( unsigned int i = 0; i < Scene->GetNrOfPhyObjects(); ++i )
+    //for( unsigned int i = 0; i < Scene->GetNrOfPhyObjects(); ++i )
+    for( std::map< int32, PhyObj * >::iterator it = Scene->begin();
+        it != Scene->end(); ++it )
     {
-        PhyObj *ThisObj = Scene->GetPhyObj( i );
+        PhyObj *ThisObj = it->second;
         glLoadIdentity();
         b2Vec2 Pos = ThisObj->GetPosition();
         float Angle = ThisObj->GetAngle();
@@ -48,10 +50,10 @@ void DisplayFunction( void )
             glColor3f( 0.0, 0.0, 1.0 );
 
         glBegin( GL_QUADS );
-        glVertex2f(-0.01,-0.01 );
-        glVertex2f( 0.01,-0.01 );
-        glVertex2f( 0.01, 0.01 );
-        glVertex2f(-0.01, 0.01 );
+        glVertex2f(-0.1,-0.1 );
+        glVertex2f( 0.1,-0.1 );
+        glVertex2f( 0.1, 0.1 );
+        glVertex2f(-0.1, 0.1 );
         glEnd();
     }
 
@@ -74,7 +76,7 @@ int main ( int argc, char **argv )
 
     // Test code    
     PhyObj *Object;
-    for( int i = 0; i < 400; ++i )
+    for( int i = 0; i < 20; ++i )
     {
         Object = new PhyObj( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 1.0 + i ), 180.0/M_PI*i*21 );
         Scene->AddPhyObj( Object );

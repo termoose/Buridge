@@ -23,13 +23,19 @@ public:
     inline bool IsActive() const { return Body->IsActive(); }
     inline bool IsAwake() const { return Body->IsAwake(); }
     
-private:
+    inline void SetDensity( float Density ) { BodyFixture.density = Density; }
+    inline void SetFriction( float Friction ) { BodyFixture.friction = Friction; }
+    
+protected:
     b2Body *Body;
     b2BodyDef BodyDef;
     b2PolygonShape BodyShape;
     b2FixtureDef BodyFixture;
+
+    bool Dynamic;
     
-    bool Dynamic;    
+private:
+    // ...
 };
 
 #endif
