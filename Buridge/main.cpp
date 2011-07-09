@@ -13,7 +13,8 @@
 #include "glUtil.h"
 #include "Setup.h"
 #include "Physics.h"
-#include "PhyObj.h"
+#include "PhyBox.h"
+#include "PhyGround.h"
 
 #include <Box2D/Box2D.h>
 
@@ -33,29 +34,8 @@ void DisplayFunction( void )
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );  
 
-    //for( unsigned int i = 0; i < Scene->GetNrOfPhyObjects(); ++i )
-    for( std::map< int32, PhyObj * >::iterator it = Scene->begin();
-        it != Scene->end(); ++it )
-    {
-        PhyObj *ThisObj = it->second;
-        glLoadIdentity();
-        b2Vec2 Pos = ThisObj->GetPosition();
-        float Angle = ThisObj->GetAngle();
-        glTranslatef( Pos.x, Pos.y, 0.0 );
-        glRotatef( Angle, 0.0, 0.0, 1.0 );
-
-        if( ThisObj->IsAwake() )
-            glColor3f( 1.0-Pos.x, 0.4+Pos.x, 0.3+Pos.y );
-        else
-            glColor3f( 0.0, 0.0, 1.0 );
-
-        glBegin( GL_QUADS );
-        glVertex2f(-0.1,-0.1 );
-        glVertex2f( 0.1,-0.1 );
-        glVertex2f( 0.1, 0.1 );
-        glVertex2f(-0.1, 0.1 );
-        glEnd();
-    }
+    // Renders all Objects in the Scene
+    Scene->RenderAll();
 
     glutSwapBuffers();
 }
@@ -69,51 +49,30 @@ void Timer( int )
 int main ( int argc, char **argv )
 {
     glUtil *Window = new glUtil( &argc, argv, 640, 480 );
-    
+
     // Global Scene and World object
     Scene = new Physics();
     MyWorld = Scene->GetWorld();
 
     // Test code    
-    PhyObj *Object;
-    for( int i = 0; i < 20; ++i )
+    PhyBox *Object;
+    b2Vec2 Extents(0.05, 0.05);
+    for( int i = 0; i < 60; ++i )
     {
-        Object = new PhyObj( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 1.0 + i ), 180.0/M_PI*i*21 );
+        Object = new PhyBox( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 1.0 + i*2 ), 0.0, Extents );
+        Object->Create();
         Scene->AddPhyObj( Object );
-
-//        Object = new PhyObj( b2Vec2( 0.0, 1.0 + i ), 0.0 );
-//        TestObjects.push_back( Object );
     }
-    
-    // Test physics, ground and walls
-    b2BodyDef GroundDef;
-    b2PolygonShape GroundBox;
-    GroundDef.position.Set( 0.0, -2.0 );
-    b2FixtureDef GroundFixture;
-    b2Body *GroundBody = MyWorld->CreateBody( &GroundDef );
-    GroundBox.SetAsBox( 1.0, 1.0 );
-    GroundFixture.shape = &GroundBox;
-    GroundBody->CreateFixture( &GroundFixture );
-  
-    b2BodyDef RightDef;
-    b2PolygonShape RightBox;
-    RightDef.position.Set( 2.0, 0.0 );
-    b2FixtureDef RightFixture;
-    b2Body *RightBody = MyWorld->CreateBody( &RightDef );
-    RightBox.SetAsBox(1.0, 1.0 );
-    RightFixture.shape = &RightBox;
-    RightBody->CreateFixture( &RightFixture );
-    
-    b2BodyDef LeftDef;
-    b2PolygonShape LeftBox;
-    LeftDef.position.Set(-2.0, 0.0 );
-    b2FixtureDef LeftFixture;
-    b2Body *LeftBody = MyWorld->CreateBody( &LeftDef );
-    LeftBox.SetAsBox(1.0, 1.0 );
-    LeftFixture.shape = &LeftBox;
-    LeftBody->CreateFixture( &LeftFixture );
 
-    
+    PhyGround *Ground = new PhyGround( b2Vec2(0.0, 0.0), 0.0 );
+    Ground->AddPoint( b2Vec2(-1.0, 1.0) );
+    Ground->AddPoint( b2Vec2(-1.0,-1.0) );
+    Ground->AddPoint( b2Vec2( 0.0, 0.0) );
+    Ground->AddPoint( b2Vec2( 1.0,-1.0) );
+    Ground->AddPoint( b2Vec2( 1.0, 1.0) );
+    Ground->Create();
+    Scene->AddPhyObj( Ground );
+
     Window->SetDisplayFunc( DisplayFunction );
     Window->SetMouseFunc( Setup::MouseFunc );
     Window->SetKeyboardFunc( Setup::KeyboardFunc );

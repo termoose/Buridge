@@ -25,3 +25,13 @@ glUtil::~glUtil()
 {
     
 }
+
+void glUtil::DrawQuad( b2Vec2 Ext )
+{
+    glBegin( GL_QUADS );
+    glVertex2f(-Ext.x,-Ext.y );
+    glVertex2f( Ext.x,-Ext.y );
+    glVertex2f( Ext.x, Ext.y );
+    glVertex2f(-Ext.x, Ext.y );
+    glEnd();
+}

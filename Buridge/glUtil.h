@@ -9,6 +9,7 @@
 #ifndef GLUTIL_H
 #define GLUTIL_H
 
+#include "main.h"
 #include <GLUT/GLUT.h>
 #include <stdlib.h>
 
@@ -36,6 +37,9 @@ public:
     inline void MainLoop() { glutMainLoop(); }
     
     inline unsigned int GetWindowID() { return WindowID; }
+    
+    // Draw a quad using half extents
+    static void DrawQuad( b2Vec2 Ext );
     
 private:
     unsigned int WindowID;

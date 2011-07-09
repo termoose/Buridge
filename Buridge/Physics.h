@@ -13,6 +13,7 @@
 
 #include <Box2D/Box2D.h>
 #include "PhyObj.h"
+#include "Physics.h"
 
 class Physics
 {
@@ -23,13 +24,11 @@ public:
     b2World *GetWorld() const;
     
     void AddPhyObj( PhyObj *Object );
-    bool RemPhyObj( int32 Id );
-    PhyObj *GetPhyObj( int32 Id ) const;
-    unsigned int GetNrOfPhyObjects() { return (unsigned int)Objects.size(); }
+    bool RemPhyObj( const int32 &Id );
+    PhyObj *GetPhyObj( const int32 &Id ) const;
+    unsigned int GetNrOfPhyObjects() const { return (unsigned int)Objects.size(); }
     
-    // Iterator getters for getting the full map of objects
-    std::map< int32, PhyObj * >::iterator begin();
-    std::map< int32, PhyObj * >::iterator end();
+    void RenderAll(); // Renders all physical objects in object list
 
     void DoStep();
 

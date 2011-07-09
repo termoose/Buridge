@@ -7,6 +7,8 @@
 //
 
 #include "Physics.h"
+#include "PhyBox.h"
+#include "PhyGround.h"
 
 Physics::Physics()
 {
@@ -49,17 +51,17 @@ b2World *Physics::GetWorld() const
     return World;
 }
 
-std::map< int32, PhyObj * >::iterator Physics::begin()
+void Physics::RenderAll()
 {
-    return Objects.begin();
+    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
+        it != Objects.end(); ++it )
+    {
+        // Calls the Render function that is deepest in the inheritence tree
+        (*it).second->Render();
+    }
 }
 
-std::map< int32, PhyObj * >::iterator Physics::end()
-{
-    return Objects.end();
-}
-
-PhyObj *Physics::GetPhyObj( int32 Id ) const
+PhyObj *Physics::GetPhyObj( const int32 &Id ) const
 {
     std::map< int32, PhyObj * >::const_iterator Result = Objects.find( Id );
 
@@ -70,7 +72,7 @@ PhyObj *Physics::GetPhyObj( int32 Id ) const
     return Result->second;
 }
 
-bool Physics::RemPhyObj( int32 Id )
+bool Physics::RemPhyObj( const int32 &Id )
 {
     PhyObj *Obj = GetPhyObj( Id );
     

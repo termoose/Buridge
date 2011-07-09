@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F58D65713C6F79800062C93 /* PhyGround.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F58D65513C6F79700062C93 /* PhyGround.cpp */; };
+		5F58D65B13C6FBF000062C93 /* PhyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F58D65913C6FBEF00062C93 /* PhyBox.cpp */; };
 		5F88B1EF13C179ED002328E5 /* PhyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F88B1ED13C179ED002328E5 /* PhyObj.cpp */; };
 		5F94648813B2723D0006E19F /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94643D13B2723D0006E19F /* b2BroadPhase.cpp */; };
 		5F94648913B2723D0006E19F /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94643F13B2723D0006E19F /* b2CollideCircle.cpp */; };
@@ -44,7 +46,6 @@
 		5F9464A913B2723D0006E19F /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94648413B2723D0006E19F /* b2RevoluteJoint.cpp */; };
 		5F9464AA13B2723D0006E19F /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F94648613B2723D0006E19F /* b2WeldJoint.cpp */; };
 		5F95D63413B274B600436EC0 /* Physics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F95D63213B274B600436EC0 /* Physics.cpp */; };
-		5F9A103F13C2054A00D23115 /* StaticObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A103D13C2054A00D23115 /* StaticObj.cpp */; };
 		5FE8E1E813B1266F001DBEA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE8E1E713B1266F001DBEA6 /* main.cpp */; };
 		5FE8E1F413B1332D001DBEA6 /* glUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FE8E1F213B1332D001DBEA6 /* glUtil.cpp */; };
 		5FE8E1F613B133C7001DBEA6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE8E1F513B133C7001DBEA6 /* OpenGL.framework */; };
@@ -65,6 +66,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F58D65513C6F79700062C93 /* PhyGround.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhyGround.cpp; sourceTree = "<group>"; };
+		5F58D65613C6F79700062C93 /* PhyGround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhyGround.h; sourceTree = "<group>"; };
+		5F58D65913C6FBEF00062C93 /* PhyBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhyBox.cpp; sourceTree = "<group>"; };
+		5F58D65A13C6FBEF00062C93 /* PhyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhyBox.h; sourceTree = "<group>"; };
 		5F88B1ED13C179ED002328E5 /* PhyObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhyObj.cpp; sourceTree = "<group>"; };
 		5F88B1EE13C179ED002328E5 /* PhyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhyObj.h; sourceTree = "<group>"; };
 		5F88B1F113C179F9002328E5 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
@@ -141,8 +146,6 @@
 		5F94648713B2723D0006E19F /* b2WeldJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WeldJoint.h; sourceTree = "<group>"; };
 		5F95D63213B274B600436EC0 /* Physics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Physics.cpp; sourceTree = "<group>"; };
 		5F95D63313B274B600436EC0 /* Physics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Physics.h; sourceTree = "<group>"; };
-		5F9A103D13C2054A00D23115 /* StaticObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticObj.cpp; sourceTree = "<group>"; };
-		5F9A103E13C2054A00D23115 /* StaticObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticObj.h; sourceTree = "<group>"; };
 		5FE8E1E313B1266F001DBEA6 /* Buridge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Buridge; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FE8E1E713B1266F001DBEA6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5FE8E1E913B1266F001DBEA6 /* Buridge.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Buridge.1; sourceTree = "<group>"; };
@@ -300,8 +303,10 @@
 				5F88B1EE13C179ED002328E5 /* PhyObj.h */,
 				5F95D63313B274B600436EC0 /* Physics.h */,
 				5F95D63213B274B600436EC0 /* Physics.cpp */,
-				5F9A103D13C2054A00D23115 /* StaticObj.cpp */,
-				5F9A103E13C2054A00D23115 /* StaticObj.h */,
+				5F58D65513C6F79700062C93 /* PhyGround.cpp */,
+				5F58D65613C6F79700062C93 /* PhyGround.h */,
+				5F58D65913C6FBEF00062C93 /* PhyBox.cpp */,
+				5F58D65A13C6FBEF00062C93 /* PhyBox.h */,
 			);
 			name = Physics;
 			sourceTree = "<group>";
@@ -438,7 +443,8 @@
 				5F9464AA13B2723D0006E19F /* b2WeldJoint.cpp in Sources */,
 				5F95D63413B274B600436EC0 /* Physics.cpp in Sources */,
 				5F88B1EF13C179ED002328E5 /* PhyObj.cpp in Sources */,
-				5F9A103F13C2054A00D23115 /* StaticObj.cpp in Sources */,
+				5F58D65713C6F79800062C93 /* PhyGround.cpp in Sources */,
+				5F58D65B13C6FBF000062C93 /* PhyBox.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

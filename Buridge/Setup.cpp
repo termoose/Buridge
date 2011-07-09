@@ -31,7 +31,8 @@ void Setup::MouseFunc( int Button, int State, int x, int y )
             //PhyObj *Object = new PhyObj( b2Vec2( 0, 1.0 ), 0.0 );
             //PhyObj *Object = new PhyObj( b2Vec2( 640.0/x - 1, 480.0/y - 1 ), 0.0 );
             //Scene->AddPhyObj( Object );
-            Scene->RemPhyObj( 9 );
+            //Scene->RemPhyObj( 9 );
+            Scene->GetPhyObj( 9 )->ApplyForce( b2Vec2(0.0, 5.0) );
             std::cout << "Left button pressed! << " << 640.0/x << " " << 480.0/y << std::endl;
             glutSwapBuffers();
             break;
