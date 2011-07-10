@@ -13,7 +13,7 @@
 class PhyGround : public PhyObj
 {
 public:
-    PhyGround( b2Vec2 Pos, float Angle);
+    PhyGround();
     ~PhyGround();
 
     void AddPoint( const b2Vec2 &Point );

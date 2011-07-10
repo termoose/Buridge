@@ -15,6 +15,8 @@
 #include "Physics.h"
 #include "PhyBox.h"
 #include "PhyGround.h"
+#include "DistanceJoint.h"
+#include "PhyWheel.h"
 
 #include <Box2D/Box2D.h>
 
@@ -57,14 +59,28 @@ int main ( int argc, char **argv )
     // Test code    
     PhyBox *Object;
     b2Vec2 Extents(0.05, 0.05);
-    for( int i = 0; i < 60; ++i )
+    for( int i = 0; i < 0; ++i )
     {
-        Object = new PhyBox( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 1.0 + i*2 ), 0.0, Extents );
+        Object = new PhyBox( b2Vec2( sin( M_PI/180.0 * i*5 )*0.9, 10.0 + i*2 ), 0.0, Extents );
         Object->Create();
         Scene->AddPhyObj( Object );
     }
 
-    PhyGround *Ground = new PhyGround( b2Vec2(0.0, 0.0), 0.0 );
+    //PhyWheel *Wheel = new PhyWheel( b2Vec2(0.0, 1.0), 0.1 );
+    //Wheel->Create();
+    //Scene->AddPhyObj( Wheel );
+    
+    PhyBox *Object1 = new PhyBox( b2Vec2(-0.1, 0.9), 0.0, Extents );
+    Object1->Create();
+    Scene->AddPhyObj( Object1 );
+    
+    PhyBox *Object2 = new PhyBox( b2Vec2( 0.1, 0.9), 0.0, Extents );
+    Object2->Create();
+    Scene->AddPhyObj( Object2 );
+    
+    Object1->CreateJoint( Object2 );
+    
+    PhyGround *Ground = new PhyGround();
     Ground->AddPoint( b2Vec2(-1.0, 1.0) );
     Ground->AddPoint( b2Vec2(-1.0,-1.0) );
     Ground->AddPoint( b2Vec2( 0.0, 0.0) );

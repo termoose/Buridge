@@ -53,6 +53,14 @@ b2World *Physics::GetWorld() const
 
 void Physics::RenderAll()
 {
+    // Render all joints on top of the PhyObj's
+    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
+        it != Objects.end(); ++it )
+    {
+        (*it).second->RenderJoints();
+    }
+
+
     for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
         it != Objects.end(); ++it )
     {

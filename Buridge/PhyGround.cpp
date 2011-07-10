@@ -12,8 +12,9 @@
 // Should abstract away the Pos and Angle of the ground, so that it is
 // created resolution specific, covering the ground from left to right
 // of the screen.
-PhyGround::PhyGround( b2Vec2 Pos, float Angle) : PhyObj( Pos, Angle, false )
+PhyGround::PhyGround() : PhyObj( b2Vec2(0.0, 0.0), 0.0, false )
 {
+    Vertices.clear();
 }
 
 PhyGround::~PhyGround()

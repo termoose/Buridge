@@ -39,7 +39,9 @@ public:
     inline unsigned int GetWindowID() { return WindowID; }
     
     // Draw a quad using half extents
-    static void DrawQuad( b2Vec2 Ext );
+    static void DrawQuad( const b2Vec2 &Ext );
+    
+    static void DrawLine( const b2Vec2 &Point1, const b2Vec2 &Point2 );
     
 private:
     unsigned int WindowID;

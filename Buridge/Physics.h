@@ -38,6 +38,8 @@ private:
 
     // Map of all simulated objects in the world, each with unique Id
     std::map< int32, PhyObj * > Objects;
+    
+    std::vector< DistanceJoint * > Joints;
 
     bool DoSleep;
     float32 TimeStep;

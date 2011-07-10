@@ -12,6 +12,8 @@
 #include "Physics.h"
 
 extern Physics *Scene;
+
+// Keep pointer so we don't have to do Scene->GetWorld() all the time
 extern b2World *MyWorld;
 
 #endif

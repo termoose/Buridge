@@ -9,6 +9,7 @@
 #include <GLUT/GLUT.h>
 #include "glUtil.h"
 #include "PhyBox.h"
+#include "DistanceJoint.h"
 
 PhyBox::PhyBox( b2Vec2 Pos, float Angle, b2Vec2 Extents ) : PhyObj( Pos, Angle, true )
 {

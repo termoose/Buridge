@@ -26,7 +26,15 @@ glUtil::~glUtil()
     
 }
 
-void glUtil::DrawQuad( b2Vec2 Ext )
+void glUtil::DrawLine( const b2Vec2 &Point1, const b2Vec2 &Point2 )
+{
+    glBegin( GL_LINES );
+    glVertex2f( Point1.x, Point1.y );
+    glVertex2f( Point2.x, Point2.y );
+    glEnd();
+}
+
+void glUtil::DrawQuad( const b2Vec2 &Ext )
 {
     glBegin( GL_QUADS );
     glVertex2f(-Ext.x,-Ext.y );
