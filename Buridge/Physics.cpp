@@ -29,8 +29,7 @@ Physics::Physics()
 Physics::~Physics()
 {
     // Delete all physical objects in vector
-    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
-        it != Objects.end(); ++it )
+    for( auto it = Objects.begin(); it != Objects.end(); ++it )
     {
         delete it->second;
     }
@@ -54,15 +53,13 @@ b2World *Physics::GetWorld() const
 void Physics::RenderAll()
 {
     // Render all joints on top of the PhyObj's
-    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
-        it != Objects.end(); ++it )
+    for( auto it = Objects.begin(); it != Objects.end(); ++it )
     {
         (*it).second->RenderJoints();
     }
 
 
-    for( std::map< int32, PhyObj * >::iterator it = Objects.begin();
-        it != Objects.end(); ++it )
+    for( auto it = Objects.begin(); it != Objects.end(); ++it )
     {
         // Calls the Render function that is deepest in the inheritence tree
         (*it).second->Render();
@@ -71,7 +68,7 @@ void Physics::RenderAll()
 
 PhyObj *Physics::GetPhyObj( const int32 &Id ) const
 {
-    std::map< int32, PhyObj * >::const_iterator Result = Objects.find( Id );
+    auto Result = Objects.find( Id );
 
     // Element not found in map
     if( Result == Objects.end() )

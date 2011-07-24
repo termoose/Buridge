@@ -16,10 +16,11 @@ DistanceJoint::DistanceJoint( PhyObj *Obj1, PhyObj *Obj2, const b2Vec2 &LocalAnc
     b2Vec2 WorldAnchor1 = Obj1->GetBody()->GetWorldPoint( LocalAnchor1 );
     b2Vec2 WorldAnchor2 = Obj2->GetBody()->GetWorldPoint( LocalAnchor2 );
 
+    
     Def.Initialize( Obj1->GetBody(), Obj2->GetBody(), WorldAnchor1, WorldAnchor2 );
 
     Def.collideConnected = true;
-    
+
     SetFreq( 1.0 );
     SetDampening( 0.4 );
 
